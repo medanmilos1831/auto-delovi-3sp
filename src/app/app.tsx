@@ -1,7 +1,7 @@
 export function App() {
   return (
     <div>
-      <span>Heloo........</span>
+      <span>Helssssoo........</span>
     </div>
   );
 }
