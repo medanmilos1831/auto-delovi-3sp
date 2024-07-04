@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* You can add global styles to this file, and also import other style files */
+@import './global.scss';
+@import './footer.scss';
+
+
+
+
+.page-enter {
+    opacity: 0;
+  }
+  
+  .page-enter-active {
+    opacity: 1;
+    transition: .4s;
+  }
+  
+  .page-exit {
+    opacity: 1;
+  }
+  
+  .page-exit-active {
+    opacity: 0;
+    transition: .4s;
+  }
+
+
+
+  // card
+
+
+.card {
+  border-radius: 10px 10px 0 0  !important;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
+ 
+  &:hover{
+    .card-image{
+      transform: scale(1.1) !important;
+    }
+    .overlay{
+      opacity: .15;
+    }
+  }
+
+}
+.card-image{
+  transition: .4s;
+  transform: scale(1);
+}
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: .5s;
+  opacity: .35;
+  background-color: black;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+
+}
+
+
+@font-face {
+  font-family: 'LTRemark-bold';
+  src: url('../assets/fonts/LTRemark-Bold.eot'), /* IE9 Compat Modes */
+       url('../assets/fonts/LTRemark-Bold.woff') format('woff'), /* Modern Browsers */
+       url('../assets/fonts/LTRemark-Bold.woff2') format('woff'), /* Modern Browsers */
+       url('../assets/fonts/LTRemark-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'LTRemark-regular';
+  src: url('../assets/fonts/LTRemark-Regular.eot'), /* IE9 Compat Modes */
+       url('../assets/fonts/LTRemark-Regular.woff') format('woff'), /* Modern Browsers */
+       url('../assets/fonts/LTRemark-Regular.woff2') format('woff'), /* Modern Browsers */
+       url('../assets/fonts/LTRemark-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+
+.font-family-bold {
+  font-family: 'LTRemark-bold';
+}
+
+.font-family-regular {
+  font-family: 'LTRemark-regular';
+}

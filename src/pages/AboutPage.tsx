@@ -1,19 +1,18 @@
 import { Scroll } from '@/components';
-// import { API_ROUTES } from '@/constants';
-// import { useApiProvider } from '@/context';
-// import { useQuery } from '@tanstack/react-query';
-import skoda from '../assets/2024-Skoda-Superb-8.webp';
+import { API_ROUTES } from '@/constants';
+import { useApiProvider } from '@/context';
+import { useQuery } from '@tanstack/react-query';
 
 import { useState } from 'react';
 
-const App = () => {
-  // const { get } = useApiProvider();
-  // const { data } = useQuery({
-  //   queryKey: ['about'],
-  //   queryFn: async () => {
-  //     return await get<any>(API_ROUTES.ABOUT.BASE);
-  //   },
-  // });
+const AboutPage = () => {
+  const { get } = useApiProvider();
+  const { data } = useQuery({
+    queryKey: ['about'],
+    queryFn: async () => {
+      return await get<any>(API_ROUTES.ABOUT.BASE);
+    },
+  });
   return (
     <div className="bg-gray-900">
       {/* Header */}
@@ -130,8 +129,7 @@ const App = () => {
         <div className="px-6 pt-14 lg:px-8">
           <div className="mx-auto max-w-2xl pt-24 text-center sm:pt-40">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              {/* {data?.headline} */}
-              3SP
+              {data?.headline}
             </h2>
           </div>
         </div>
@@ -140,10 +138,12 @@ const App = () => {
         <div className="mx-auto mt-20 max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
             <div className=" text-base leading-7 text-gray-300">
-              <div>{/* <p>{data?.opis}</p> */}</div>
+              <div>
+                <p>{data?.opis}</p>
+              </div>
             </div>
             <dl className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mt-28 lg:grid-cols-4">
-              {/* {data?.items?.map((stat: any, statIdx: any) => (
+              {data?.items?.map((stat: any, statIdx: any) => (
                 <div
                   key={statIdx}
                   className="flex flex-col-reverse gap-y-3 border-l border-white/20 pl-6"
@@ -155,7 +155,7 @@ const App = () => {
                     {stat.value}
                   </dd>
                 </div>
-              ))} */}
+              ))}
             </dl>
           </div>
         </div>
@@ -163,7 +163,7 @@ const App = () => {
         {/* Image section */}
         <div className="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
           <img
-            src={skoda}
+            src={data?.image}
             alt=""
             className="aspect-[9/4] w-full object-cover xl:rounded-3xl"
           />
@@ -225,4 +225,4 @@ const App = () => {
     // </div>
   );
 };
-export { App };
+export { AboutPage };
