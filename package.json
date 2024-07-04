@@ -1,5 +1,5 @@
 {
-  "homepage": "https://medanmilos1831.github.io/srba-client",
+  "homepage": "http://auto-delovi-3sp.com",
   "name": "@srba-client/source",
   "version": "0.0.0",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "build": "nx build",
     "test": "nx test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist/srba-client"
+    "deploy": "gh-pages -b main -d build"
   },
   "private": true,
   "dependencies": {
