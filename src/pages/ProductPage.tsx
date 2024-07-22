@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
 const ProductPage = () => {
-  const { product } = useParams<{
+  const { product, program, category } = useParams<{
     program: string;
     category: string;
     product: string;
@@ -14,7 +14,7 @@ const ProductPage = () => {
   const { data } = useQuery({
     queryKey: ['product'],
     queryFn: async () => {
-      return await get<any>(`/get-product-by-slug/${product}`);
+      return await get<any>(`/product/${program}/${category}/${product}`);
     },
   });
   const dispatch = useDispatch();

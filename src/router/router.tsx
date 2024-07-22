@@ -25,10 +25,6 @@ export const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: SPA_ROUTES.PROGRAMS_PAGE,
-        element: <ProgramiPage />,
-      },
-      {
         path: `${SPA_ROUTES.PROGRAMS_PAGE}/:program`,
         element: <ProgramPage />,
       },

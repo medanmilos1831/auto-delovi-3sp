@@ -40,7 +40,7 @@ const ShopCard = () => {
     ['openCard', 'setQyt', 'removeItem', 'clearProducts']
   );
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (formData: any) => {
       return post<any>('/naruci', {
         products: value.products,
@@ -112,9 +112,6 @@ const ShopCard = () => {
                         <form
                           id="form"
                           className="mt-0 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16"
-                          onSubmit={() => {
-                            console.log('ddddddd');
-                          }}
                         >
                           <section
                             aria-labelledby="cart-heading"
@@ -377,14 +374,13 @@ const ShopCard = () => {
                               <div className="mt-6">
                                 <button
                                   type="button"
+                                  disabled={isPending}
                                   className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                                   onClick={() => {
                                     if (!value.products.length) return;
                                     const f = new FormData(
                                       document.getElementById('form') as any
                                     );
-                                    // const phone = f.getAll('phone')[0];
-                                    // const email = f.getAll('email')[0];
                                     if (
                                       !f.get('phone') &&
                                       !f.get('email-address')
