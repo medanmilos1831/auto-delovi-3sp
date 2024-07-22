@@ -43,8 +43,8 @@ export const router = createBrowserRouter(
       path: '*',
       element: <>nema</>,
     },
-  ],
-  {
-    basename: '/auto-delovi-3sp',
-  }
+  ]
+  // {
+  //   basename: '/auto-delovi-3sp',
+  // }
 );
