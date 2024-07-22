@@ -16,8 +16,6 @@ import { Axios } from '@/libs';
 import { StoreClientProvider } from '@/observer';
 import { router } from '@/router';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import axios from 'axios';
-import { useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 
 const App = () => {
