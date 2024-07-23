@@ -4,7 +4,10 @@ const { join } = require('path');
 
 module.exports = {
   output: {
-    path: join(__dirname, './dist/srba-client'),
+    path: join(__dirname, './build'),
+    publicPath: '/build/',
+    publicPath: '/',
+    // filename: 'bundle.js',
   },
   devServer: {
     port: 4200,
