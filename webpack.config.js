@@ -11,6 +11,10 @@ module.exports = {
   },
   devServer: {
     port: 4200,
+    historyApiFallback: true,
+    // historyApiFallback: {
+    //   rewrites: [{ from: /\//, to: '/404.html' }],
+    // },
   },
   plugins: [
     new NxAppWebpackPlugin({
