@@ -29,10 +29,13 @@ const PageTemplate = ({ queryKey, url, select, render }: IPageTemplate) => {
         desc={data?.desc}
       />
       <div className="px-7 pb-8">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {data?.items?.map((item: any, index: number) => {
             return (
-              <div key={index}>
+              <div
+                key={index}
+                className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+              >
                 {isFetching || isLoading ? (
                   <CardSkeleton key={index} />
                 ) : (
