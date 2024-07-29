@@ -20,9 +20,6 @@ const AppFooter = () => {
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
             <div>
-              {/* <h2 className="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Radno vreme
-              </h2> */}
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-2">
                   <a href="https://flowbite.com/" className="hover:underline">
