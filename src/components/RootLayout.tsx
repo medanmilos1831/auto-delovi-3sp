@@ -4,7 +4,6 @@ import { AppHeader } from './AppHeader/AppHeader';
 import { AppFooter } from './AppFooter';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useLocation, useOutlet } from 'react-router-dom';
-import { StoreClientProvider } from '@/observer';
 import { ShopCard } from './ShopCard';
 
 const RootLayout = () => {

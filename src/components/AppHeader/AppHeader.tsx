@@ -191,16 +191,6 @@ const AppHeader = () => {
                   ? 'underLineHover-white'
                   : 'underLineHover-blue'
               }`}
-              to={SPA_ROUTES.PROGRAMS_PAGE}
-            >
-              Programi
-            </NavLink>
-            <NavLink
-              className={`underLineHover ${
-                scrollPosition === 0
-                  ? 'underLineHover-white'
-                  : 'underLineHover-blue'
-              }`}
               to={SPA_ROUTES.ABOUT_PAGE}
             >
               O nama

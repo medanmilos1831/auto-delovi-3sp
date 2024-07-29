@@ -398,7 +398,7 @@ const ShopCard = () => {
                                     });
                                   }}
                                 >
-                                  Naruči
+                                  {isPending ? 'Loading...' : 'Naruči'}
                                 </button>
                               </div>
                             </div>

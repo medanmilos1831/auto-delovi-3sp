@@ -5,8 +5,8 @@ export class Axios extends AxiosService {
   private instance: AxiosInstance;
   constructor() {
     const axiosInstance = axios.create({
-      // baseURL: 'http://localhost:3000',
-      baseURL: 'https://api.auto-delovi-3sp.com/',
+      baseURL: 'http://localhost:3000',
+      // baseURL: 'https://api.auto-delovi-3sp.com/',
     });
     super(axiosInstance);
     this.instance = axiosInstance;
