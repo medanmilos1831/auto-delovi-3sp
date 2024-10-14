@@ -11,7 +11,7 @@ interface IPageTemplate {
 
 const PageTemplate = ({ queryKey, url, select, render }: IPageTemplate) => {
   const { get } = useApiProvider();
-  const { data, isLoading, isFetching } = useQuery({
+  const { data, isLoading, isFetching, isPlaceholderData } = useQuery({
     queryKey: [queryKey],
     queryFn: async () => {
       return await get<any>(url);
@@ -19,6 +19,7 @@ const PageTemplate = ({ queryKey, url, select, render }: IPageTemplate) => {
     select(data: any) {
       return select(data);
     },
+    placeholderData: new Array(30).fill(null),
   });
   return (
     <div className="h-full w-full">
@@ -30,20 +31,20 @@ const PageTemplate = ({ queryKey, url, select, render }: IPageTemplate) => {
       />
       <div className="px-7 pb-8">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {data?.items?.map((item: any, index: number) => {
-            return (
-              <div
-                key={index}
-                className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
-              >
-                {isFetching || isLoading ? (
-                  <CardSkeleton key={index} />
-                ) : (
-                  render(item)
-                )}
-              </div>
-            );
-          })}
+          {isLoading || isFetching
+            ? Object.keys(data).map((item: any, index: number) => {
+                return <CardSkeleton key={index} />;
+              })
+            : data?.items?.map((item: any, index: number) => {
+                return (
+                  <div
+                    key={index}
+                    className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+                  >
+                    {render(item)}
+                  </div>
+                );
+              })}
         </div>
       </div>
     </div>

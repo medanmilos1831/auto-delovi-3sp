@@ -70,6 +70,54 @@ const ProductPage = () => {
                     <p>{data?.opis}</p>
                   </div>
                 </div>
+                <div className="mt-10">
+                  <h2 className="text-sm font-medium text-gray-900">
+                    Pakovanje
+                  </h2>
+
+                  <div className="prose prose-sm mt-4 text-gray-500">
+                    <p>{data?.PAK ?? '-'}</p>
+                  </div>
+                </div>
+                <div className="mt-10">
+                  <h2 className="text-sm font-medium text-gray-900">
+                    Jedinica mere
+                  </h2>
+
+                  <div className="prose prose-sm mt-4 text-gray-500">
+                    <p>{data?.jm ?? '-'}</p>
+                  </div>
+                </div>
+
+                <div className="mt-10">
+                  <h2 className="text-sm font-medium text-gray-900">
+                    Kataloski broj
+                  </h2>
+
+                  <div className="prose prose-sm mt-4 text-gray-500">
+                    <p>{data?.kataloski_broj ?? '-'}</p>
+                  </div>
+                </div>
+
+                <div className="mt-10">
+                  <h2 className="text-sm font-medium text-gray-900">
+                    Napomena
+                  </h2>
+
+                  <div className="prose prose-sm mt-4 text-gray-500">
+                    <p>{data?.napomena ?? '-'}</p>
+                  </div>
+                </div>
+
+                <div className="mt-10">
+                  <h2 className="text-sm font-medium text-gray-900">
+                    Proizvodjač
+                  </h2>
+
+                  <div className="prose prose-sm mt-4 text-gray-500">
+                    <p>{data?.proizvodjac ?? '-'}</p>
+                  </div>
+                </div>
 
                 <div className="mt-8 border-t border-gray-200 pt-8">
                   <div className="prose prose-sm mt-4 text-gray-500">

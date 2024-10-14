@@ -1,17 +1,5 @@
 import { ApiProvider } from '@/context';
 
-// 171
-// klare cetkin 7
-// 4841 8787 8684 1951
-// 160-5100102363259-88
-// 1951
-
-// dodati kataloski broj
-// evening87
-
-// auto-delovi-dobavnic-3sp.rs com
-// hello
-
 import { Axios } from '@/libs';
 import { StoreClientProvider } from '@/observer';
 import { router } from '@/router';
@@ -35,9 +23,10 @@ const App = () => {
                 ];
               }
               const index = state.products.findIndex(
-                (i: any) => i.product.id === action.payload.id
+                (i: any) => i.product.slug === action.payload.slug
               );
               if (index > -1) {
+                console.log('usoa', state);
                 return state;
               } else {
                 state.products = [
