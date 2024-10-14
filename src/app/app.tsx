@@ -7,7 +7,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router-dom';
 
 const App = () => {
-  console.log('heloooadadasdaso');
+  console.log('ffff');
   return (
     <StoreClientProvider
       store={{
