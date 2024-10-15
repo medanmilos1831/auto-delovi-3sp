@@ -7,7 +7,6 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router-dom';
 
 const App = () => {
-  console.log('ffff');
   return (
     <StoreClientProvider
       store={{
@@ -27,7 +26,6 @@ const App = () => {
                 (i: any) => i.product.slug === action.payload.slug
               );
               if (index > -1) {
-                console.log('usoa', state);
                 return state;
               } else {
                 state.products = [
