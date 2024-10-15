@@ -13,10 +13,10 @@ const HomePage = () => {
             items: data.programi,
           };
         }}
+        imgUrl={'../../assets/skoda.webp'}
         render={(item: any) => {
           return (
             <>
-              he
               <Card
                 text={item.naziv}
                 slug={`programi/${item.slug}`}

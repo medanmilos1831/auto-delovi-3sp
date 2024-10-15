@@ -7,9 +7,16 @@ interface IPageTemplate {
   url: string;
   select: any;
   render: any;
+  imgUrl?: any;
 }
 
-const PageTemplate = ({ queryKey, url, select, render }: IPageTemplate) => {
+const PageTemplate = ({
+  queryKey,
+  url,
+  select,
+  render,
+  imgUrl,
+}: IPageTemplate) => {
   const { get } = useApiProvider();
   const { data, isLoading, isFetching, isPlaceholderData } = useQuery({
     queryKey: [queryKey],
@@ -25,7 +32,7 @@ const PageTemplate = ({ queryKey, url, select, render }: IPageTemplate) => {
     <div className="h-full w-full">
       <PageHeader
         headline={data?.naziv}
-        image={data?.image}
+        image={imgUrl ? imgUrl : data?.image}
         size="h-2/3"
         desc={data?.desc}
       />
