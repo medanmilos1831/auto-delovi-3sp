@@ -1,6 +1,7 @@
 import { Card, PageTemplate } from '@/components';
 
 const HomePage = () => {
+  console.log('logg');
   return (
     <>
       <PageTemplate
