@@ -17,6 +17,7 @@ const CategoryPage = () => {
         };
       }}
       render={(item: any) => {
+        console.log('utem', item);
         return (
           <ProductCard
             caption={item.caption}
@@ -24,6 +25,7 @@ const CategoryPage = () => {
             cena={item.cena}
             imageUrl={item.image}
             slug={item.slug}
+            kataloskiBroj={item.kataloski_broj}
           />
         );
       }}

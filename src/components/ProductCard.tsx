@@ -6,12 +6,14 @@ const ProductCard = ({
   naziv,
   cena,
   caption,
+  kataloskiBroj,
 }: {
   slug: string;
   imageUrl?: string;
   naziv: string;
   cena: string;
   caption?: string;
+  kataloskiBroj: string;
 }) => {
   const nav = useNavigate();
   return (
@@ -68,9 +70,18 @@ const ProductCard = ({
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white uppercase">
               {naziv}
             </h5>
-            <span className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white uppercase">
-              {cena} RSD
-            </span>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <span className="text-white">Kat. broj</span>
+              <span className="font-bold tracking-tight text-gray-900 dark:text-white uppercase">
+                {/* {cena} RSD */}
+                {kataloskiBroj}
+              </span>
+            </div>
           </div>
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {caption}
