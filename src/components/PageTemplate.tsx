@@ -8,6 +8,7 @@ interface IPageTemplate {
   select: any;
   render: any;
   imgUrl?: any;
+  lgGrid?: string;
 }
 
 const PageTemplate = ({
@@ -16,6 +17,7 @@ const PageTemplate = ({
   select,
   render,
   imgUrl,
+  lgGrid = 'lg:grid-cols-5',
 }: IPageTemplate) => {
   const { get } = useApiProvider();
   const { data, isLoading, isFetching, isPlaceholderData } = useQuery({
@@ -33,11 +35,11 @@ const PageTemplate = ({
       <PageHeader
         headline={data?.naziv}
         image={imgUrl ? imgUrl : data?.image}
-        size="h-2/3"
+        size="h-1/4"
         desc={data?.desc}
       />
       <div className="px-7 pb-8">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 ${lgGrid}`}>
           {isLoading || isFetching
             ? Object.keys(data).map((item: any, index: number) => {
                 return <CardSkeleton key={index} />;

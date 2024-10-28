@@ -14,6 +14,7 @@ const HomePage = () => {
             items: data.programi,
           };
         }}
+        lgGrid="lg:grid-cols-3"
         imgUrl={'../../assets/skoda.webp'}
         render={(item: any) => {
           return (
