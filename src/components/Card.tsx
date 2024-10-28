@@ -12,10 +12,11 @@ const Card = ({ imageUrl, text, slug, isProduct = false, caption }: ICard) => {
   const nav = useNavigate();
   return (
     <div
-      className="w-full card bg-white dark:bg-gray-800 h-full"
+      className="w-full card  h-full"
       style={{
         display: 'flex',
         flexDirection: 'column',
+        background: '#1f2937',
       }}
       onClick={() => {
         nav(slug);
