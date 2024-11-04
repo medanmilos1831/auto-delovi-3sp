@@ -76,16 +76,18 @@ const PageTemplate = ({
             ? Object.keys(data).map((item: any, index: number) => {
                 return <CardSkeleton key={index} />;
               })
-            : state?.items?.map((item: any, index: number) => {
-                return (
-                  <div
-                    key={index}
-                    className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
-                  >
-                    {render(item)}
-                  </div>
-                );
-              })}
+            : (hasSearch ? state?.items : data.items).map(
+                (item: any, index: number) => {
+                  return (
+                    <div
+                      key={index}
+                      className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+                    >
+                      {render(item)}
+                    </div>
+                  );
+                }
+              )}
         </div>
       </div>
     </div>
