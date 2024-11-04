@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
 import { PageTemplate, ProductCard } from '@/components';
+import { useParams } from 'react-router-dom';
 
 const CategoryPage = () => {
   const { program, category } = useParams<{
@@ -16,8 +16,30 @@ const CategoryPage = () => {
           items: data.products,
         };
       }}
+      hasSearch
+      onSearch={(value: any, state: any, setState: any) => {
+        let cloneState = state;
+        let v = state.items;
+        if (value) {
+          v = state.products.filter((item: any) =>
+            item.kataloski_broj.startsWith(value)
+          );
+          setState((prev: any) => {
+            return {
+              ...prev,
+              items: v,
+            };
+          });
+        } else {
+          setState((prev: any) => {
+            return {
+              ...prev,
+              items: cloneState.products,
+            };
+          });
+        }
+      }}
       render={(item: any) => {
-        console.log('utem', item);
         return (
           <ProductCard
             caption={item.caption}

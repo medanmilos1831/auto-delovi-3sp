@@ -1,4 +1,5 @@
 import { ApiProvider } from '@/context';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { Axios } from '@/libs';
 import { StoreClientProvider } from '@/observer';
@@ -76,6 +77,7 @@ const App = () => {
         <ApiProvider value={new Axios()}>
           <RouterProvider router={router} />
         </ApiProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </StoreClientProvider>
   );
