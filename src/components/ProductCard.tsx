@@ -26,7 +26,7 @@ const ProductCard = ({
         }}
       >
         <div
-          className="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-96"
+          className="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none group-hover:opacity-75 sm:h-72"
           style={{
             overflow: 'hidden',
           }}
