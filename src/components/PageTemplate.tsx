@@ -31,10 +31,10 @@ const PageTemplate = ({
     queryFn: async () => {
       let r = await get<any>(url);
       setState(select(r));
-      return await get<any>(url);
+      return r;
     },
     select(data: any) {
-      return select(data);
+      select(data);
     },
     placeholderData: new Array(30).fill(null),
   });

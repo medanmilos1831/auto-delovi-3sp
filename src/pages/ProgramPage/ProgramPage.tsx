@@ -3,6 +3,7 @@ import { Card, PageTemplate } from '@/components';
 
 const ProgramPage = () => {
   const { program } = useParams<{ program: string }>();
+  console.log('render');
   return (
     <PageTemplate
       url={`/program/${program}`}

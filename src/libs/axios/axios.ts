@@ -13,6 +13,7 @@ export class Axios extends AxiosService {
   }
 
   api_get = <T>(url: string, config: AxiosRequestConfig): Promise<T> => {
+    console.log('tul', url);
     return this.instance.get(url, config);
   };
 
