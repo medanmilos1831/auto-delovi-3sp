@@ -34,7 +34,7 @@ const PageTemplate = ({
       return r;
     },
     select(data: any) {
-      select(data);
+      return select(data);
     },
     placeholderData: new Array(30).fill(null),
   });
