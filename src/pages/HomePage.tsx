@@ -1,5 +1,6 @@
 import { Card, PageTemplate } from '@/components';
 import { data } from '../data';
+import img from '../assets/gume.jpg';
 
 const HomePage = () => {
   console.log('logg');
@@ -49,7 +50,7 @@ const HomePage = () => {
               <Card
                 text={i.naziv}
                 slug={`programi/${i.slug}`}
-                imageUrl={i.image}
+                imageUrl={img}
                 caption={i.caption}
               />
             </div>
