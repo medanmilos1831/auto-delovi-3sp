@@ -3,7 +3,6 @@ import { data } from '../data';
 import img from '../assets/gume.jpg';
 
 const HomePage = () => {
-  console.log('logg');
   // pocetnaRouter.get("/pocetna", async (req, res) => {
   //   try {
   //     const aboutData = req.sharedData.pocetna;
@@ -38,7 +37,12 @@ const HomePage = () => {
   }
   return (
     <div className="h-full w-full">
-      <PageHeader headline={'Sve ok'} image={data?.image} size="h-1/4" />
+      <PageHeader
+        headline={'Dobrodošli u 3sp'}
+        image={`../assets/slike/auto-program.jpg`}
+        size="h-1/4"
+        // doFetch
+      />
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
         {programs.map((i: any, index: any) => {
           return (
@@ -46,11 +50,10 @@ const HomePage = () => {
               key={index}
               className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
             >
-              {/* {render(item)} */}
               <Card
                 text={i.naziv}
                 slug={`programi/${i.slug}`}
-                imageUrl={'../assets/gume.jpg'}
+                imageUrl={`../assets/slike/${i.slug}.jpg`}
                 caption={i.caption}
               />
             </div>

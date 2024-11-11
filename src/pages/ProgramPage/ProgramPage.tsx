@@ -25,6 +25,7 @@ const ProgramPage = () => {
   }
   let r: any = {
     naziv: data[program as any]?.naziv ?? null,
+    slug: data[program as any]?.slug ?? null,
     caption: data[program as any]?.caption ?? null,
     desc: data[program as any]?.desc ?? null,
     image: data[program as any]?.image ?? null,
@@ -45,12 +46,16 @@ const ProgramPage = () => {
       return kategorijeBezProizvoda;
     })(),
   };
+  console.log('r', r);
   return (
     <div className="h-full w-full">
-      <PageHeader headline={r?.naziv} image={data?.image} size="h-1/4" />
+      <PageHeader
+        headline={r?.naziv}
+        image={`../assets/slike/${r.slug}.jpg`}
+        size="h-1/4"
+      />
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
         {r.category.map((i: any, index: any) => {
-          // console.log('iiiii', i);
           return (
             <div
               key={index}

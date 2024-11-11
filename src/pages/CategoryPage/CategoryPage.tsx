@@ -1,4 +1,4 @@
-import { Card, PageTemplate, ProductCard } from '@/components';
+import { Card, PageHeader, PageTemplate, ProductCard } from '@/components';
 import { useLocation, useParams } from 'react-router-dom';
 import { data } from '../../data';
 
@@ -15,10 +15,15 @@ const CategoryPage = () => {
     })(),
   };
   return (
-    <>
+    <div className="h-full w-full">
+      <PageHeader
+        headline={r?.naziv}
+        image={`../assets/${r.products[0].id}.jpg`}
+        size="h-1/4"
+        doFetch
+      />
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
         {r.products.map((i: any, index: any) => {
-          console.log('item', i);
           return (
             <div
               key={index}
@@ -104,7 +109,7 @@ const CategoryPage = () => {
           );
         }}
       /> */}
-    </>
+    </div>
   );
 };
 

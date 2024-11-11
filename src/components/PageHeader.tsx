@@ -1,16 +1,32 @@
+import { useState, useEffect } from 'react';
+
 const PageHeader = ({
   headline,
   size = 'h-full',
-  image = '../../assets/image-placeholder.jpg',
+  image = '../../assets/slike/image-placeholder.jpg',
   caption,
   desc,
+  doFetch = false,
 }: {
   headline?: string;
   caption?: string;
   desc?: string;
   size?: 'h-1/2' | 'h-full' | 'h-2/3' | 'h-1/4';
   image?: string;
+  doFetch?: boolean;
 }) => {
+  const [hasImage, setHasImage] = useState<any>(false);
+
+  useEffect(() => {
+    if (!doFetch) return;
+    const checkAllImages = async () => {
+      const imagePaths = await fetch(image);
+      if (imagePaths.status === 200) {
+        setHasImage(true);
+      }
+    };
+    checkAllImages();
+  }, []);
   return (
     <div className={`h-2/5 mb-5`}>
       <div className="relative isolate overflow-hidden bg-gray-900 h-full w-full">
@@ -27,7 +43,12 @@ const PageHeader = ({
           }}
         >
           <img
-            src={image}
+            src={(() => {
+              if (!doFetch) return image;
+              return hasImage
+                ? image
+                : '../../assets/slike/image-placeholder.jpg';
+            })()}
             alt=""
             className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
           />
