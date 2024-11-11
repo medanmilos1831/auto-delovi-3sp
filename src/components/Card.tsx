@@ -1,15 +1,36 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface ICard {
-  imageUrl: string;
+  imageUrl: any;
   text: string;
   slug: string;
   isProduct?: boolean;
   caption?: any;
+  isProgram?: boolean;
 }
 
-const Card = ({ imageUrl, text, slug, isProduct = false, caption }: ICard) => {
+const Card = ({
+  imageUrl,
+  text,
+  isProgram = false,
+  slug,
+  isProduct = false,
+  caption,
+}: ICard) => {
   const nav = useNavigate();
+  const [images, setImages] = useState<any>(null);
+
+  useEffect(() => {
+    if (!isProgram) return;
+    const checkAllImages = async () => {
+      const imagePaths = await fetch(`../assets/${imageUrl[0].id}.jpg`);
+      if (imagePaths.status === 200) {
+        setImages(`../assets/${imageUrl[0].id}.jpg`);
+      }
+    };
+    checkAllImages();
+  }, []);
   return (
     <div
       key={slug}
@@ -27,9 +48,9 @@ const Card = ({ imageUrl, text, slug, isProduct = false, caption }: ICard) => {
           overflow: 'hidden',
         }}
       >
-        {imageUrl ? (
+        {(isProgram ? images : imageUrl) ? (
           <img
-            src={imageUrl}
+            src={isProgram ? images : imageUrl}
             className="card-image h-full w-full object-center sm:w-full"
           />
         ) : (

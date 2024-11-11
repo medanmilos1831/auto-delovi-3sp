@@ -24,13 +24,37 @@ const CategoryPage = () => {
               key={index}
               className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
             >
-              <Card
+              <ProductCard
+                caption={i.caption}
+                naziv={i.naziv}
+                cena={i.cena}
+                imageUrl={i.id}
+                slug={i.slug}
+                kataloskiBroj={i.kataloski_broj}
+              />
+              {/* <Card
                 text={i.naziv}
                 slug={`${l.pathname}/${i.slug}`}
-                // imageUrl={'../assets/gume.jpg'}
-                imageUrl={`${i.image ? i.image : null}`}
+                imageUrl={`${
+                  i.id
+                    ? (() => {
+                        if (`../assets/${i.id}.jpg`) {
+                          return `../assets/${i.id}.jpg`;
+                        }
+
+                        if (`../assets/${i.id}.jpeg`) {
+                          return `../assets/${i.id}.jpeg`;
+                        }
+
+                        if (`../assets/${i.id}.png`) {
+                          return `../assets/${i.id}.png`;
+                        }
+                        return null;
+                      })()
+                    : null
+                }`}
                 caption={i.caption}
-              />
+              /> */}
             </div>
           );
         })}

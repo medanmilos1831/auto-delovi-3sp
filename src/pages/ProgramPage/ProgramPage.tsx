@@ -45,12 +45,12 @@ const ProgramPage = () => {
       return kategorijeBezProizvoda;
     })(),
   };
-  console.log('mmmmm', r);
   return (
     <div className="h-full w-full">
       <PageHeader headline={r?.naziv} image={data?.image} size="h-1/4" />
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
         {r.category.map((i: any, index: any) => {
+          // console.log('iiiii', i);
           return (
             <div
               key={index}
@@ -59,9 +59,11 @@ const ProgramPage = () => {
               <Card
                 text={i.naziv}
                 slug={`${l.pathname}/${i.slug}`}
-                // imageUrl={'../assets/gume.jpg'}
-                imageUrl={`${i.image ? i.image : null}`}
+                imageUrl={Object.values(
+                  data[program as any].kategorije[i.slug].prozivodi
+                )}
                 caption={i.caption}
+                isProgram
               />
             </div>
           );

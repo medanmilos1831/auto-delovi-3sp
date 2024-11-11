@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({
@@ -16,6 +17,17 @@ const ProductCard = ({
   kataloskiBroj: string;
 }) => {
   const nav = useNavigate();
+  const [images, setImages] = useState<any>(null);
+
+  useEffect(() => {
+    const checkAllImages = async () => {
+      const imagePaths = await fetch(`../assets/${imageUrl}.jpg`);
+      if (imagePaths.status === 200) {
+        setImages(`../assets/${imageUrl}.jpg`);
+      }
+    };
+    checkAllImages();
+  }, []);
   return (
     <>
       <div
@@ -31,9 +43,9 @@ const ProductCard = ({
             overflow: 'hidden',
           }}
         >
-          {imageUrl ? (
+          {images ? (
             <img
-              src={imageUrl}
+              src={images}
               className="card-image h-full w-full object-cover object-center sm:h-full sm:w-full"
             />
           ) : (
