@@ -3,21 +3,20 @@ import { useApiProvider } from '@/context';
 import { useDispatch } from '@/observer';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { data as pera } from '../data';
 
 const ProductPage = () => {
-  const { product, program, category } = useParams<{
-    program: string;
-    category: string;
-    product: string;
-  }>();
-  const { get } = useApiProvider();
-  const { data } = useQuery({
-    queryKey: ['product'],
-    queryFn: async () => {
-      return await get<any>(`/product/${program}/${category}/${product}`);
-    },
-  });
+  const { product, program, category } = useParams<any>();
+  // const { get } = useApiProvider();
+  // const { data } = useQuery({
+  //   queryKey: ['product'],
+  //   queryFn: async () => {
+  //     return await get<any>(`/product/${program}/${category}/${product}`);
+  //   },
+  // });
   const dispatch = useDispatch();
+  const data =
+    pera[program as any].kategorije[category as any].prozivodi[product as any];
   return (
     <div className="h-full w-full">
       <PageHeader size="h-1/2" headline={data?.naziv} image={data?.image} />

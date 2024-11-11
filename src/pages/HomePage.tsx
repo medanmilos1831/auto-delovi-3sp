@@ -1,4 +1,4 @@
-import { Card, PageTemplate } from '@/components';
+import { Card, PageHeader, PageTemplate } from '@/components';
 import { data } from '../data';
 import img from '../assets/gume.jpg';
 
@@ -36,9 +36,9 @@ const HomePage = () => {
       programs.push({ naziv, slug, image, caption });
     }
   }
-  console.log('eeeee', programs);
   return (
-    <>
+    <div className="h-full w-full">
+      <PageHeader headline={'Sve ok'} image={data?.image} size="h-1/4" />
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
         {programs.map((i: any, index: any) => {
           return (
@@ -50,39 +50,14 @@ const HomePage = () => {
               <Card
                 text={i.naziv}
                 slug={`programi/${i.slug}`}
-                imageUrl={img}
+                imageUrl={'../assets/gume.jpg'}
                 caption={i.caption}
               />
             </div>
           );
         })}
       </div>
-      {/* <PageTemplate
-        queryKey={'pocetna'}
-        url={'/pocetna'}
-        select={(data: any) => {
-          return {
-            ...data,
-            naziv: data.headline,
-            items: data.programi,
-          };
-        }}
-        lgGrid="lg:grid-cols-3"
-        imgUrl={'../../assets/skoda.webp'}
-        render={(item: any) => {
-          return (
-            <>
-              <Card
-                text={item.naziv}
-                slug={`programi/${item.slug}`}
-                imageUrl={item.image}
-                caption={item.caption}
-              />
-            </>
-          );
-        }}
-      ></PageTemplate> */}
-    </>
+    </div>
   );
 };
 export { HomePage };
