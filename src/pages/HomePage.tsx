@@ -41,7 +41,6 @@ const HomePage = () => {
         headline={'Dobrodošli u 3sp'}
         image={`../assets/slike/auto-program.jpg`}
         size="h-1/4"
-        // doFetch
       />
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
         {programs.map((i: any, index: any) => {
@@ -55,6 +54,7 @@ const HomePage = () => {
                 slug={`programi/${i.slug}`}
                 imageUrl={`../assets/slike/${i.slug}.jpg`}
                 caption={i.caption}
+                doFetch
               />
             </div>
           );

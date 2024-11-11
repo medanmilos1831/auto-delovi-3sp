@@ -7,26 +7,26 @@ interface ICard {
   slug: string;
   isProduct?: boolean;
   caption?: any;
-  isProgram?: boolean;
+  doFetch?: boolean;
 }
 
 const Card = ({
   imageUrl,
   text,
-  isProgram = false,
+  doFetch = false,
   slug,
   isProduct = false,
   caption,
 }: ICard) => {
   const nav = useNavigate();
-  const [images, setImages] = useState<any>(null);
+  const [hasImage, setHasImage] = useState<any>(false);
 
   useEffect(() => {
-    if (!isProgram) return;
+    if (!doFetch) return;
     const checkAllImages = async () => {
-      const imagePaths = await fetch(`../assets/${imageUrl[0].id}.jpg`);
+      const imagePaths = await fetch(imageUrl);
       if (imagePaths.status === 200) {
-        setImages(`../assets/${imageUrl[0].id}.jpg`);
+        setHasImage(true);
       }
     };
     checkAllImages();
@@ -48,7 +48,18 @@ const Card = ({
           overflow: 'hidden',
         }}
       >
-        {(isProgram ? images : imageUrl) ? (
+        <img
+          src={(() => {
+            // return '../../assets/slike/image-placeholder.jpg';
+            // if (!doFetch) return '../assets/${imageUrl[0].id}.jpg';
+            return hasImage
+              ? imageUrl
+              : '../../assets/slike/image-placeholder.jpg';
+          })()}
+          // src={isProgram ? images : imageUrl}
+          className="card-image h-full w-full object-center sm:w-full"
+        />
+        {/* {(isProgram ? images : imageUrl) ? (
           <img
             src={isProgram ? images : imageUrl}
             className="card-image h-full w-full object-center sm:w-full"
@@ -66,7 +77,7 @@ const Card = ({
               <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z" />
             </svg>
           </div>
-        )}
+        )} */}
       </div>
       <div
         className="flex flex-1 flex-col space-y-2 p-4"

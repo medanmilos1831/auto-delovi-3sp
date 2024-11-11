@@ -46,7 +46,6 @@ const ProgramPage = () => {
       return kategorijeBezProizvoda;
     })(),
   };
-  console.log('r', r);
   return (
     <div className="h-full w-full">
       <PageHeader
@@ -64,11 +63,15 @@ const ProgramPage = () => {
               <Card
                 text={i.naziv}
                 slug={`${l.pathname}/${i.slug}`}
-                imageUrl={Object.values(
-                  data[program as any].kategorije[i.slug].prozivodi
-                )}
+                imageUrl={`../assets/${
+                  (
+                    Object.values(
+                      data[program as any].kategorije[i.slug].prozivodi
+                    )[0] as any
+                  ).id
+                }.jpg`}
+                doFetch
                 caption={i.caption}
-                isProgram
               />
             </div>
           );
