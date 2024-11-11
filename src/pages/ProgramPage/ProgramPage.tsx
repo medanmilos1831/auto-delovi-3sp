@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom';
-import { Card, PageHeader, PageTemplate } from '@/components';
+import { Card, CardSkeleton, PageHeader, PageTemplate } from '@/components';
 import { data } from '../../data';
 import { useQuery } from '@tanstack/react-query';
 import { useApiProvider } from '@/context';
@@ -75,6 +75,28 @@ const ProgramPage = () => {
         image={`../assets/slike/${data.slug}.jpg`}
         size="h-1/4"
       />
+      <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
+        {isLoading || isFetching
+          ? Object.keys(data).map((item: any, index: number) => {
+              return <CardSkeleton key={index} />;
+            })
+          : data?.category?.map((i: any, index: any) => {
+              return (
+                <div
+                  key={index}
+                  className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+                >
+                  <Card
+                    text={i.naziv}
+                    slug={`${l.pathname}/${i.slug}`}
+                    imageUrl={`../assets/${i.firstId}.jpg`}
+                    doFetch
+                    caption={i.caption}
+                  />
+                </div>
+              );
+            })}
+      </div>
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
         {data?.category?.map((i: any, index: any) => {
           return (
