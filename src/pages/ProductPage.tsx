@@ -3,7 +3,8 @@ import { useApiProvider } from '@/context';
 import { useDispatch } from '@/observer';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { data as pera } from '../data';
+import { data as myData } from '../data';
+import { useEffect, useState } from 'react';
 
 const ProductPage = () => {
   const { product, program, category } = useParams<any>();
@@ -16,10 +17,27 @@ const ProductPage = () => {
   // });
   const dispatch = useDispatch();
   const data =
-    pera[program as any].kategorije[category as any].prozivodi[product as any];
+    myData[program as any].kategorije[category as any].prozivodi[
+      product as any
+    ];
+  const [hasImage, setHasImage] = useState<any>(false);
+  useEffect(() => {
+    const checkAllImages = async () => {
+      const imagePaths = await fetch(`../assets/${data.id}.jpg`);
+      if (imagePaths.status === 200) {
+        setHasImage(true);
+      }
+    };
+    checkAllImages();
+  }, []);
   return (
     <div className="h-full w-full">
-      <PageHeader size="h-1/2" headline={data?.naziv} image={data?.image} />
+      <PageHeader
+        size="h-1/2"
+        headline={data?.naziv}
+        image={`../assets/${data.id}.jpg`}
+        doFetch
+      />
       <div className="bg-white">
         <div className="pb-16 pt-6 sm:pb-24">
           <div className="mx-auto mt-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -40,7 +58,11 @@ const ProductPage = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8">
                   <img
-                    src={data?.image}
+                    src={
+                      hasImage
+                        ? `../assets/${data.id}.jpg`
+                        : '../../assets/slike/image-placeholder.jpg'
+                    }
                     className="rounded-lg lg:col-span-2 lg:row-span-2"
                   />
                 </div>

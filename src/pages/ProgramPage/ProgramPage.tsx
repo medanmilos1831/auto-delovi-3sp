@@ -1,60 +1,82 @@
 import { useLocation, useParams } from 'react-router-dom';
 import { Card, PageHeader, PageTemplate } from '@/components';
 import { data } from '../../data';
+import { useQuery } from '@tanstack/react-query';
+import { useApiProvider } from '@/context';
 
 const ProgramPage = () => {
   const { program } = useParams<{ program: string }>();
+  const { get } = useApiProvider();
+  // const [state, setState] = useState<any>([]);
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: ['program_categories'],
+    queryFn: async () => {
+      return await get<any>(`/program/${program}`);
+      // setState(select(r));
+      // return r;
+    },
+    // select(data: any) {
+    //   console.log('dddd', data);
+    //   return {
+    //     ...data,
+    //     items: data.category,
+    //   };
+    // },
+    placeholderData: new Array(30).fill(null),
+  });
   const l = useLocation();
 
-  const categories = [];
+  // const categories = [];
 
-  for (const programKey in data) {
-    if (Object.hasOwnProperty.call(data, programKey)) {
-      const program = data[programKey];
+  // for (const programKey in data) {
+  //   if (Object.hasOwnProperty.call(data, programKey)) {
+  //     const program = data[programKey];
 
-      for (const categoryKey in program.kategorije) {
-        if (Object.hasOwnProperty.call(program.kategorije, categoryKey)) {
-          const category = program.kategorije[categoryKey];
+  //     for (const categoryKey in program.kategorije) {
+  //       if (Object.hasOwnProperty.call(program.kategorije, categoryKey)) {
+  //         const category = program.kategorije[categoryKey];
 
-          const { slug, naziv, desc, caption, image, imageName } = category;
+  //         const { slug, naziv, desc, caption, image, imageName } = category;
 
-          categories.push({ slug, naziv, desc, caption, image, imageName });
-        }
-      }
-    }
-  }
-  let r: any = {
-    naziv: data[program as any]?.naziv ?? null,
-    slug: data[program as any]?.slug ?? null,
-    caption: data[program as any]?.caption ?? null,
-    desc: data[program as any]?.desc ?? null,
-    image: data[program as any]?.image ?? null,
-    imageName: data[program as any]?.imageName ?? null,
-    category: (() => {
-      if (!data[program as any].kategorije) {
-        return [];
-      }
-      const v = Object.values(data[program as any].kategorije);
-      const kategorijeBezProizvoda = Object.values(
-        data[program as any].kategorije
-      ).map((kategorija: any) => {
-        const { prozivodi, ...rest } = kategorija;
+  //         categories.push({ slug, naziv, desc, caption, image, imageName });
+  //       }
+  //     }
+  //   }
+  // }
+  // let r: any = {
+  //   naziv: data[program as any]?.naziv ?? null,
+  //   slug: data[program as any]?.slug ?? null,
+  //   caption: data[program as any]?.caption ?? null,
+  //   desc: data[program as any]?.desc ?? null,
+  //   image: data[program as any]?.image ?? null,
+  //   imageName: data[program as any]?.imageName ?? null,
+  //   category: (() => {
+  //     if (!data[program as any].kategorije) {
+  //       return [];
+  //     }
+  //     const v = Object.values(data[program as any].kategorije);
+  //     const kategorijeBezProizvoda = Object.values(
+  //       data[program as any].kategorije
+  //     ).map((kategorija: any) => {
+  //       const { prozivodi, ...rest } = kategorija;
 
-        return rest;
-      });
+  //       return rest;
+  //     });
 
-      return kategorijeBezProizvoda;
-    })(),
-  };
+  //     return kategorijeBezProizvoda;
+  //   })(),
+  // };
+  console.log('data', data);
   return (
+    // <>pera</>
     <div className="h-full w-full">
       <PageHeader
-        headline={r?.naziv}
-        image={`../assets/slike/${r.slug}.jpg`}
+        headline={data?.naziv}
+        image={`../assets/slike/${data.slug}.jpg`}
         size="h-1/4"
       />
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
-        {r.category.map((i: any, index: any) => {
+        {data?.category?.map((i: any, index: any) => {
           return (
             <div
               key={index}
@@ -63,13 +85,7 @@ const ProgramPage = () => {
               <Card
                 text={i.naziv}
                 slug={`${l.pathname}/${i.slug}`}
-                imageUrl={`../assets/${
-                  (
-                    Object.values(
-                      data[program as any].kategorije[i.slug].prozivodi
-                    )[0] as any
-                  ).id
-                }.jpg`}
+                imageUrl={`../assets/${i.firstId}.jpg`}
                 doFetch
                 caption={i.caption}
               />
