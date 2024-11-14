@@ -1,6 +1,7 @@
-import { Card, PageHeader, PageTemplate } from '@/components';
+import { Card, CardSkeleton, PageHeader } from '@/components';
+import { useApiProvider } from '@/context';
+import { useQuery } from '@tanstack/react-query';
 import { data } from '../data';
-import img from '../assets/gume.jpg';
 
 const HomePage = () => {
   // pocetnaRouter.get("/pocetna", async (req, res) => {
@@ -27,38 +28,71 @@ const HomePage = () => {
   //     res.status(error.code).send(error.message);
   //   }
   // });
-  const programs = [];
-  for (const key in data as any) {
-    if (Object.hasOwnProperty.call(data, key)) {
-      const program = data[key];
-      const { naziv, slug, image, caption } = program;
-      programs.push({ naziv, slug, image, caption });
-    }
-  }
+  const { get } = useApiProvider();
+  const {
+    data: pocetnaData,
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ['pocetna'],
+    queryFn: async () => {
+      return await get<any>(`/pocetna`);
+    },
+    placeholderData: new Array(30).fill(null),
+  });
+  console.log('data', pocetnaData);
+  // const programs = [];
+  // for (const key in data as any) {
+  //   if (Object.hasOwnProperty.call(data, key)) {
+  //     const program = data[key];
+  //     const { naziv, slug, image, caption } = program;
+  //     programs.push({ naziv, slug, image, caption });
+  //   }
+  // }
   return (
     <div className="h-full w-full">
       <PageHeader
-        headline={'Dobrodošli u 3sp'}
-        image={`../assets/slike/auto-program.jpg`}
+        headline={pocetnaData?.headline}
+        image={pocetnaData?.image}
         size="h-1/4"
       />
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
-        {programs.map((i: any, index: any) => {
+        {isLoading || isFetching
+          ? Object.keys(data).map((item: any, index: number) => {
+              return <CardSkeleton key={index} />;
+            })
+          : pocetnaData?.programi?.map((i: any, index: any) => {
+              return (
+                <div
+                  key={i.slug}
+                  className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+                >
+                  <Card
+                    text={i.naziv}
+                    slug={`programi/${i.slug}`}
+                    imageUrl={i.image}
+                    caption={i.caption}
+                    doFetch
+                  />
+                </div>
+              );
+            })}
+        {/* {data?.programi?.map((i: any, index: any) => {
           return (
             <div
-              key={index}
+              key={i.slug}
               className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
             >
               <Card
                 text={i.naziv}
                 slug={`programi/${i.slug}`}
-                imageUrl={`../assets/slike/${i.slug}.jpg`}
+                imageUrl={i.image}
                 caption={i.caption}
                 doFetch
               />
             </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );

@@ -1,17 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import { useApiProvider } from '@/context';
 
-const AppFooter = () => {
+const AppFooter = ({ data }: any) => {
   const { get } = useApiProvider();
-  const { data } = useQuery({
-    queryKey: ['CONTACT_QUERY_KEY'],
-    queryFn: async () => {
-      return await get<any>('/kontakt');
-    },
-  });
+  // const { data } = useQuery({
+  //   queryKey: ['CONTACT_QUERY_KEY'],
+  //   queryFn: async () => {
+  //     return await get<any>('/kontakt');
+  //   },
+  // });
   return (
-    <footer className="bg-white dark:bg-gray-900">
-      <div className="mx-auto w-full max-w-screen-xl p-4 py-3 lg:py-3">
+    <footer className="bg-gray-900 hidden md:block">
+      <div className="mx-10 w-full p-4 py-3 lg:py-3">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -132,80 +132,6 @@ const AppFooter = () => {
         </div>
       </div>
     </footer>
-
-    // <div className="bg-primaryBlue text-white py-4 px-5 relative">
-    //   <div className="flex gap-5 items-center justify-center">
-    //     {data?.phone ? (
-    //       <div className="mb-3">
-    //         <span className="mr-3">Telefon:</span>
-    //         <span className="underLineHover">
-    //           <a href={`tel:${data?.phone}`}>{data?.phone}</a>
-    //         </span>
-    //       </div>
-    //     ) : null}
-    //     {data?.email ? (
-    //       <div className="mb-3">
-    //         <span className="mr-3">Email: </span>
-    //         <span>
-    //           <span>{data.email}</span>
-    //         </span>
-    //       </div>
-    //     ) : null}
-    //     {data?.adresa ? (
-    //       <div className="mb-3">
-    //         <span className="mr-3">Adresa: </span>
-    //         {data.coordinate ? (
-    //           <a
-    //             className="underLineHover"
-    //             href={`${data.coordinate ? data.coordinate : '#'}`}
-    //             target="_blank"
-    //           >
-    //             {data.adresa}
-    //           </a>
-    //         ) : (
-    //           <span>{data.adresa}</span>
-    //         )}
-    //       </div>
-    //     ) : null}
-    //   </div>
-    //   <div className="flex flex items-center justify-center gap-x-5">
-    //     <div>
-    //       <span className="mr-3">Radnim danima: {data?.radnimDanima}</span>
-    //     </div>
-    //     <div>
-    //       <span className="mr-3">Subotom: {data?.subotom}</span>
-    //     </div>
-    //     <div>
-    //       <span className="mr-3">Nedeljom: {data?.nedeljom}</span>
-    //     </div>
-    //   </div>
-    //   <div className="flex flex items-center justify-center absolute right-0 bottom-0 pb-4 px-5">
-    //     <div>
-    //       <div className="flex gap-x-5">
-    //         {data?.facebook ? (
-    //           <span
-    //             className="cursor-pointer"
-    //             onClick={() => {
-    //               window.open(data.facebook, '_blank');
-    //             }}
-    //           >
-    //             <FaceBook />
-    //           </span>
-    //         ) : null}
-    //         {data?.instagram ? (
-    //           <span
-    //             className="cursor-pointer"
-    //             onClick={() => {
-    //               window.open(data.instagram, '_blank');
-    //             }}
-    //           >
-    //             <Instagram />
-    //           </span>
-    //         ) : null}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 

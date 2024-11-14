@@ -5,16 +5,25 @@ import { AppFooter } from './AppFooter';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useLocation, useOutlet } from 'react-router-dom';
 import { ShopCard } from './ShopCard';
+import { useApiProvider } from '@/context';
+import { useQuery } from '@tanstack/react-query';
 
 const RootLayout = () => {
   const location = useLocation();
   let s = createRef<any>();
   const currentOutlet = useOutlet();
+  const { get } = useApiProvider();
+  const { data } = useQuery({
+    queryKey: ['CONTACT_QUERY_KEY'],
+    queryFn: async () => {
+      return await get<any>('/kontakt');
+    },
+  });
   return (
     <div className="h-screen w-screen flex flex-col relative">
       <div className="flex grow">
         <Scroll>
-          <AppHeader />
+          <AppHeader data={data} />
           <SwitchTransition>
             <CSSTransition
               key={location.pathname}
@@ -34,7 +43,7 @@ const RootLayout = () => {
           </SwitchTransition>
         </Scroll>
       </div>
-      <AppFooter />
+      <AppFooter data={data} />
       <ShopCard />
     </div>
   );
