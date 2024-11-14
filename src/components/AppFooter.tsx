@@ -1,67 +1,45 @@
-import { useQuery } from '@tanstack/react-query';
-import { useApiProvider } from '@/context';
-
 const AppFooter = ({ data }: any) => {
-  const { get } = useApiProvider();
-  // const { data } = useQuery({
-  //   queryKey: ['CONTACT_QUERY_KEY'],
-  //   queryFn: async () => {
-  //     return await get<any>('/kontakt');
-  //   },
-  // });
   return (
     <footer className="bg-gray-900 hidden md:block">
-      <div className="mx-10 w-full p-4 py-3 lg:py-3">
+      <div className="mx-auto w-full p-8 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
               3SP
             </span>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
             <div>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className=" text-gray-400 font-medium">
                 <li className="mb-2">
-                  <a href="https://flowbite.com/" className="hover:underline">
+                  <span className="hover:underline">
                     Pon-pet: {data?.radnimDanima}
-                  </a>
+                  </span>
                 </li>
                 <li className="mb-2">
-                  <a
-                    href="https://tailwindcss.com/"
-                    className="hover:underline"
-                  >
+                  <span className="hover:underline">
                     Subota: {data?.subotom}
-                  </a>
+                  </span>
                 </li>
                 <li>
-                  <a
-                    href="https://tailwindcss.com/"
-                    className="hover:underline"
-                  >
+                  <span className="hover:underline">
                     Nedeljom: {data?.nedeljom}
-                  </a>
+                  </span>
                 </li>
               </ul>
             </div>
             <div>
-              {/* <h2 className="mb-3 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Kontakt
-              </h2> */}
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className=" text-gray-400 font-medium">
                 <li className="mb-2">
                   <a
-                    href="https://github.com/themesberg/flowbite"
+                    href={`mailto:${data?.email}`}
                     className="hover:underline "
                   >
                     Email: {data?.email}
                   </a>
                 </li>
                 <li className="mb-2">
-                  <a
-                    href="https://discord.gg/4eeurUVvTy"
-                    className="hover:underline"
-                  >
+                  <a href={`tel:${data?.phone}`} className="hover:underline">
                     Tel: {data?.phone}
                   </a>
                 </li>
@@ -77,20 +55,14 @@ const AppFooter = ({ data }: any) => {
             </div>
           </div>
         </div>
-        <hr className="my-3 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-3" />
+        <hr className="my-3  sm:mx-auto border-gray-700 lg:my-3" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            © 2023{' '}
-            <a href="https://flowbite.com/" className="hover:underline">
-              3sp
-            </a>
-            . All Rights Reserved.
-          </span>
+          <span className="text-sm  sm:text-center text-gray-400"></span>
           <div className="flex mt-4 sm:justify-center sm:mt-0 gap-3">
             {data?.facebook ? (
               <a
                 href={data?.facebook}
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                className="text-gray-500  hover:text-white"
               >
                 <svg
                   className="w-4 h-4"
@@ -111,7 +83,7 @@ const AppFooter = ({ data }: any) => {
             {data?.instagram ? (
               <a
                 href={data?.instagram}
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                className="text-gray-500 hover:text-gray-900 hover:text-white"
               >
                 <svg
                   className="w-5 h-5"

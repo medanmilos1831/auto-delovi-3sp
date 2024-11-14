@@ -43,7 +43,7 @@ const AppHeader = ({ data }: any) => {
       }}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-0 lg:px-8"
+        className="mx-auto flex items-center justify-between p-0 px-7 lg:px-8"
         aria-label="Global"
       >
         <div className="flex flex-1">
