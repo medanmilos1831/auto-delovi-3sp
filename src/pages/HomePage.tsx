@@ -40,7 +40,6 @@ const HomePage = () => {
     },
     placeholderData: new Array(30).fill(null),
   });
-  console.log('data', pocetnaData);
   // const programs = [];
   // for (const key in data as any) {
   //   if (Object.hasOwnProperty.call(data, key)) {
