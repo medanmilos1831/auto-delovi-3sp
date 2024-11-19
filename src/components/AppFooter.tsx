@@ -104,9 +104,9 @@ const AppFooter = ({ data }: any) => {
               <a
                 aria-label="link"
                 className="Link_link__2iGTE Logo_logo__F8qL5 text-gray-500"
-                id=""
                 role="button"
-                href="/"
+                href={data?.kupujemProdajem}
+                target="_blank"
               >
                 <svg
                   style={{
