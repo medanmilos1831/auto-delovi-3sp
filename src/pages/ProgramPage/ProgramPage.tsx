@@ -15,7 +15,6 @@ const ProgramPage = () => {
   });
   const l = useLocation();
   return (
-    // <>pera</>
     <div className="h-full w-full">
       <PageHeader headline={data?.naziv} image={data?.image} size="h-1/4" />
       <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3`}>
@@ -59,77 +58,6 @@ const ProgramPage = () => {
         })}
       </div>
     </div>
-    // <PageTemplate
-    //   url={`/program/${program}`}
-    //   queryKey="program_categories"
-    //   select={(data: any) => {
-    //     return {
-    //       ...data,
-    //       items: data.category,
-    //     };
-    //   }}
-    //   render={(item: any) => {
-    //     return (
-    //       <Card
-    //         text={item.naziv}
-    //         slug={item.slug}
-    //         imageUrl={item.image}
-    //         caption={item.caption}
-    //       />
-    //     );
-    //   }}
-    // />
   );
 };
-
-// try {
-//   // let jsonArray = JSON.parse(fs.readFileSync(filePath, "utf8"));
-//   let jsonArray = req.sharedData.program;
-//   if (!jsonArray[req.params.program]) {
-//     return res.send([]);
-//   }
-
-//   const categories = [];
-
-//   for (const programKey in jsonArray) {
-//     if (Object.hasOwnProperty.call(jsonArray, programKey)) {
-//       const program = jsonArray[programKey];
-
-//       for (const categoryKey in program.kategorije) {
-//         if (Object.hasOwnProperty.call(program.kategorije, categoryKey)) {
-//           const category = program.kategorije[categoryKey];
-
-//           const { slug, naziv, desc, caption, image, imageName } = category;
-
-//           categories.push({ slug, naziv, desc, caption, image, imageName });
-//         }
-//       }
-//     }
-//   }
-// res.send({
-//   naziv: jsonArray[req.params.program]?.naziv ?? null,
-//   caption: jsonArray[req.params.program]?.caption ?? null,
-//   desc: jsonArray[req.params.program]?.desc ?? null,
-//   image: jsonArray[req.params.program]?.image ?? null,
-//   imageName: jsonArray[req.params.program]?.imageName ?? null,
-//   category: (() => {
-//     if (!jsonArray[req.params.program].kategorije) {
-//       return [];
-//     }
-//     const v = Object.values(jsonArray[req.params.program].kategorije);
-//     const kategorijeBezProizvoda = Object.values(
-//       jsonArray[req.params.program].kategorije
-//     ).map((kategorija) => {
-//       const { prozivodi, ...rest } = kategorija;
-
-//       return rest;
-//     });
-
-//     return kategorijeBezProizvoda;
-//   })(),
-// });
-// } catch (error) {
-//   res.status(error.code || 500).send(error.message);
-// }
-
 export { ProgramPage };
