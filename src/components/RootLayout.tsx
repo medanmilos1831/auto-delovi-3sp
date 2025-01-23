@@ -17,7 +17,7 @@ const RootLayout = () => {
   return (
     <ContactProvider>
       <div className="h-screen w-screen flex flex-col relative">
-        {/* <AppHeader /> */}
+        <AppHeader />
         <div className="flex grow">
           <Outlet />
           {/* <AppHeader data={data} />

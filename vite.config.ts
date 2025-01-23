@@ -6,7 +6,7 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: './node_modules/.vite/srba-front',
+  cacheDir: './node_modules/.vite/auto-delovi-3sp',
   server: {
     port: 4200,
     host: 'localhost',
@@ -22,7 +22,7 @@ export default defineConfig({
   //  plugins: [ nxViteTsPaths() ],
   // },
   build: {
-    outDir: './dist/srba-front',
+    outDir: './dist/auto-delovi-3sp',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -36,7 +36,7 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: './coverage/srba-front',
+      reportsDirectory: './coverage/auto-delovi-3sp',
       provider: 'v8',
     },
   },
