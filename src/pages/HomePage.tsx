@@ -37,7 +37,7 @@ const HomePage = () => {
       <ScrollProvider>
         <ScrollProvider.Container>
           <>
-            dsds
+            dsdsdddd
             <div className="h-2/3 w-full relative mb-3">
               <ImageParallax
                 imageStyle={{
