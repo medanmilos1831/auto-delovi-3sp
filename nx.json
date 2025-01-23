@@ -1,29 +1,27 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.js",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/test-setup.[jt]s"
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.cjs"
     ],
     "sharedGlobals": []
   },
   "plugins": [
     {
-      "plugin": "@nx/webpack/plugin",
+      "plugin": "@nx/vite/plugin",
       "options": {
         "buildTargetName": "build",
+        "testTargetName": "test",
         "serveTargetName": "serve",
-        "previewTargetName": "preview"
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static",
+        "typecheckTargetName": "typecheck"
       }
     },
     {
@@ -31,22 +29,16 @@
       "options": {
         "targetName": "lint"
       }
-    },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "test"
-      }
     }
   ],
-  "defaultProject": "srba-client",
+  "defaultProject": "srba-front",
   "generators": {
     "@nx/react": {
       "application": {
         "babel": true,
         "style": "tailwind",
         "linter": "eslint",
-        "bundler": "webpack"
+        "bundler": "vite"
       },
       "component": {
         "style": "tailwind"

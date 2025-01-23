@@ -1,4 +1,7 @@
-const AppFooter = ({ data }: any) => {
+import { useContact } from '../context';
+
+const AppFooter = () => {
+  const { data } = useContact();
   return (
     <footer className="bg-gray-900 hidden md:block">
       <div className="mx-auto w-full p-8 py-6 lg:py-8">
@@ -13,17 +16,17 @@ const AppFooter = ({ data }: any) => {
               <ul className=" text-gray-400 font-medium">
                 <li className="mb-2">
                   <span className="hover:underline">
-                    Pon-pet: {data?.radnimDanima}
+                    Pon-pet: {data?.data.radnimdanima[0].text}
                   </span>
                 </li>
                 <li className="mb-2">
                   <span className="hover:underline">
-                    Subota: {data?.subotom}
+                    Subota: {data?.data.subotom[0].text}
                   </span>
                 </li>
                 <li>
                   <span className="hover:underline">
-                    Nedeljom: {data?.nedeljom}
+                    Nedeljom: {data?.data.nedeljom[0].text}
                   </span>
                 </li>
               </ul>
@@ -32,23 +35,31 @@ const AppFooter = ({ data }: any) => {
               <ul className=" text-gray-400 font-medium">
                 <li className="mb-2">
                   <a
-                    href={`mailto:${data?.email}`}
+                    href={`mailto:${data?.data.email[0].text}`}
                     className="hover:underline "
                   >
-                    Email: {data?.email}
+                    Email: {data?.data.email[0].text}
                   </a>
                 </li>
                 <li className="mb-2">
-                  <a href={`tel:${data?.phone}`} className="hover:underline">
-                    Tel: {data?.phone}
+                  <a
+                    href={`tel:${data?.data.phone[0].text}`}
+                    className="hover:underline"
+                  >
+                    Tel: {data?.data.phone[0].text}
                   </a>
                 </li>
                 <li>
                   <a
-                    href={`${data?.coordinate ? data?.coordinate : '#'}`}
+                    href={`${
+                      data?.data.coordinate.url
+                        ? data?.data.coordinate.url
+                        : '#'
+                    }`}
                     className="hover:underline"
+                    target="_blank"
                   >
-                    Adresa: {data?.adresa}
+                    Adresa: {data?.data.adresa[0].text}
                   </a>
                 </li>
               </ul>
@@ -59,9 +70,9 @@ const AppFooter = ({ data }: any) => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm  sm:text-center text-gray-400"></span>
           <div className="flex mt-4 sm:justify-center sm:mt-0 gap-3">
-            {data?.facebook ? (
+            {data?.data.facebook[0] ? (
               <a
-                href={data?.facebook}
+                href={data?.data.facebook[0].text}
                 className="text-gray-500  hover:text-white"
               >
                 <svg
@@ -80,9 +91,9 @@ const AppFooter = ({ data }: any) => {
                 <span className="sr-only">Facebook page</span>
               </a>
             ) : null}
-            {data?.instagram ? (
+            {data?.data.instagram[0] ? (
               <a
-                href={data?.instagram}
+                href={data?.data.instagram[0].text}
                 className="text-gray-500  hover:text-white"
               >
                 <svg
@@ -100,12 +111,12 @@ const AppFooter = ({ data }: any) => {
                 <span className="sr-only">Instagram page</span>
               </a>
             ) : null}
-            {data?.kupujemProdajem ? (
+            {data?.data.kupujemprodajem[0] ? (
               <a
                 aria-label="link"
                 className="Link_link__2iGTE Logo_logo__F8qL5 text-gray-500"
                 role="button"
-                href={data?.kupujemProdajem}
+                href={data?.data.kupujemprodajem[0].text}
                 target="_blank"
               >
                 <svg

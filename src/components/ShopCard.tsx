@@ -1,5 +1,3 @@
-import { useApiProvider } from '@/context';
-import { useDispatch, useSelector } from '@/observer';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import {
@@ -20,6 +18,8 @@ import {
   ExclamationTriangleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
+import { useApiProvider } from '../context/ApiContext';
+import { useDispatch, useSelector } from '../context';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
@@ -39,7 +39,6 @@ const ShopCard = () => {
     },
     ['openCard', 'setQyt', 'removeItem', 'clearProducts']
   );
-
   const { mutate, isPending } = useMutation({
     mutationFn: (formData: any) => {
       return post<any>('/naruci', {
@@ -63,6 +62,9 @@ const ShopCard = () => {
     <>
       <Dialog
         className="relative z-10"
+        style={{
+          zIndex: 99999,
+        }}
         open={(() => {
           if (!value.products.length) return false;
           return value.open;
@@ -130,7 +132,7 @@ const ShopCard = () => {
                                   <li className="flex py-3 sm:py-6" key={index}>
                                     <div className="flex-shrink-0">
                                       <img
-                                        src={i?.product.image}
+                                        src={i?.product.data.image.url}
                                         className="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48"
                                       />
                                     </div>
@@ -144,12 +146,12 @@ const ShopCard = () => {
                                                 href="#"
                                                 className="font-medium text-gray-700 hover:text-gray-800"
                                               >
-                                                {i.product.naziv}
+                                                {i.product.data.title[0].text}
                                               </a>
                                             </h3>
                                           </div>
                                           <p className="mt-1 text-sm font-medium text-gray-900">
-                                            RSD {i.product.cena}
+                                            RSD {i.product.data.price}
                                           </p>
                                         </div>
                                       </div>
@@ -279,7 +281,8 @@ const ShopCard = () => {
                                     (total: any, item: any) => {
                                       return (
                                         total +
-                                        item.qty * parseFloat(item.product.cena)
+                                        item.qty *
+                                          parseFloat(item.product.data.price)
                                       );
                                     },
                                     0

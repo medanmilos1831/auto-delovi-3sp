@@ -13,21 +13,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "paths": {},
     "jsx": "react-jsx",
     "allowJs": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "paths": {
-      "@/libs": ["./src/libs/index.ts"],
-      "@/pages": ["./src/pages/index.ts"],
-      "@/router": ["./src/router/router.tsx"],
-      "@/context": ["./src/context/index.ts"],
-      "@/constants": ["./src/constants/index.ts"],
-      "@/hooks": ["./src/hooks/index.ts"],
-      "@/components": ["src/components/index.ts"],
-      "@/observer": ["src/observer/index.ts"],
-    }
+    "types": ["vite/client", "vitest"]
   },
   "files": [],
   "include": [],

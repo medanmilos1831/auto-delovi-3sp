@@ -1,12 +1,9 @@
-import { ApiProvider } from '@/context';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-import { Axios } from '@/libs';
-import { StoreClientProvider } from '@/observer';
-import { router } from '@/router';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router-dom';
-
+import { ApiProvider } from '../context/ApiContext';
+import { StoreClientProvider } from '../context';
+import { Axios } from '../libs';
+import { router } from '../router/router';
 const App = () => {
   return (
     <StoreClientProvider

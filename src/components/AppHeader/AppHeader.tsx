@@ -1,12 +1,14 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { SPA_ROUTES } from '@/constants';
 import { useScroll } from '../Scroll';
-import { useDispatch, useSelector } from '@/observer';
+// import { useDispatch, useSelector } from '@/observer';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { useEffect, useState } from 'react';
+import { useContact, useDispatch, useSelector } from '../../context';
+import { SPA_ROUTES } from '../../constants';
 
-const AppHeader = ({ data }: any) => {
+const AppHeader = () => {
+  const { data: contact } = useContact();
   const { scrollPosition } = useScroll();
   const loc = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,34 +30,14 @@ const AppHeader = ({ data }: any) => {
   }, [loc]);
 
   return (
-    <header
-      className={`top-0 right-0 w-full px-5 ${
-        scrollPosition === 0
-          ? 'bg-transparent text-white'
-          : 'bg-white text-primaryBlue'
-      }`}
-      style={{
-        position: 'fixed',
-        transition: '.4s',
-        zIndex: 3,
-        paddingTop: scrollPosition === 0 ? '1.5rem' : '1rem',
-        paddingBottom: scrollPosition === 0 ? '1.5rem' : '1rem',
-      }}
-    >
+    <header className={`top-0 right-0 w-full bg-white text-primaryBlue py-2`}>
       <nav
         className="mx-auto flex items-center justify-between p-0 px-7 lg:px-8"
         aria-label="Global"
       >
         <div className="flex flex-1">
           <div className="hidden lg:flex lg:gap-x-12">
-            <NavLink
-              className={`underLineHover ${
-                scrollPosition === 0
-                  ? 'underLineHover-white'
-                  : 'underLineHover-blue'
-              }`}
-              to={SPA_ROUTES.HOME_PAGE}
-            >
+            <NavLink className={`underLineHover`} to={SPA_ROUTES.HOME_PAGE}>
               Pocetna
             </NavLink>
             <NavLink
@@ -76,12 +58,7 @@ const AppHeader = ({ data }: any) => {
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon
-                className={`h-6 w-6 ${
-                  scrollPosition === 0 ? 'text-white ' : 'text-primaryBlue'
-                }`}
-                aria-hidden="true"
-              />
+              <Bars3Icon className={`h-6 w-6`} aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -193,14 +170,7 @@ const AppHeader = ({ data }: any) => {
               >
                 Pocetna
               </NavLink>
-              <NavLink
-                className={`underLineHover ${
-                  scrollPosition === 0
-                    ? 'underLineHover-white'
-                    : 'underLineHover-blue'
-                }`}
-                to={SPA_ROUTES.ABOUT_PAGE}
-              >
+              <NavLink className={`underLineHover`} to={SPA_ROUTES.ABOUT_PAGE}>
                 O nama
               </NavLink>
             </div>
@@ -221,7 +191,7 @@ const AppHeader = ({ data }: any) => {
                         href="https://flowbite.com/"
                         className="hover:underline"
                       >
-                        Pon-pet: {data?.radnimDanima}
+                        Pon-pet: {contact?.data.radnimdanima[0].text}
                       </a>
                     </li>
                     <li className="mb-2">
@@ -229,7 +199,7 @@ const AppHeader = ({ data }: any) => {
                         href="https://tailwindcss.com/"
                         className="hover:underline"
                       >
-                        Subota: {data?.subotom}
+                        Subota: {contact?.data.subotom[0].text}
                       </a>
                     </li>
                     <li>
@@ -237,7 +207,7 @@ const AppHeader = ({ data }: any) => {
                         href="https://tailwindcss.com/"
                         className="hover:underline"
                       >
-                        Nedeljom: {data?.nedeljom}
+                        Nedeljom: {contact?.data.nedeljom[0].text}
                       </a>
                     </li>
                   </ul>
@@ -249,26 +219,30 @@ const AppHeader = ({ data }: any) => {
                   <ul className="text-gray-500 font-medium">
                     <li className="mb-2">
                       <a
-                        href={`mailto:${data?.email}`}
+                        href={`mailto:${contact?.data?.email[0].text}`}
                         className="hover:underline "
                       >
-                        Email: {data?.email}
+                        Email: {contact?.data?.email[0].text}
                       </a>
                     </li>
                     <li className="mb-2">
                       <a
-                        href={`tel:${data?.phone}`}
+                        href={`tel:${contact?.data.phone[0].text}`}
                         className="hover:underline"
                       >
-                        Tel: {data?.phone}
+                        Tel: {contact?.data.phone[0].text}
                       </a>
                     </li>
                     <li>
                       <a
-                        href={`${data?.coordinate ? data?.coordinate : '#'}`}
+                        href={`${
+                          contact?.data.coordinate.url
+                            ? contact?.data.coordinate.url
+                            : '#'
+                        }`}
                         className="hover:underline"
                       >
-                        Adresa: {data?.adresa}
+                        Adresa: {contact?.data.adresa[0].text}
                       </a>
                     </li>
                   </ul>
@@ -285,9 +259,9 @@ const AppHeader = ({ data }: any) => {
                 . All Rights Reserved.
               </span>
               <div className="flex mt-4 sm:justify-center sm:mt-0 gap-3">
-                {data?.facebook ? (
+                {contact?.data.facebook[0] ? (
                   <a
-                    href={data?.facebook}
+                    href={contact?.data.facebook[0].text}
                     className="text-gray-500 hover:text-gray-900 "
                   >
                     <svg
@@ -306,9 +280,9 @@ const AppHeader = ({ data }: any) => {
                     <span className="sr-only">Facebook page</span>
                   </a>
                 ) : null}
-                {data?.instagram ? (
+                {contact?.data.instagram[0] ? (
                   <a
-                    href={data?.instagram}
+                    href={contact?.data.instagram[0].text}
                     className="text-gray-500 hover:text-gray-900 "
                   >
                     <svg
@@ -326,13 +300,13 @@ const AppHeader = ({ data }: any) => {
                     <span className="sr-only">Instagram page</span>
                   </a>
                 ) : null}
-                {data?.kupujemProdajem ? (
+                {contact?.data?.kupujemprodajem ? (
                   <a
                     aria-label="link"
                     className="Link_link__2iGTE Logo_logo__F8qL5 text-gray-500"
                     id=""
                     role="button"
-                    href={data?.kupujemProdajem}
+                    href={contact?.data.kupujemprodajem[0].text}
                     target="_blank"
                   >
                     <svg

@@ -12,4 +12,3 @@ export * from './Skeleton';
 export * from './CardSkeleton';
 export * from './ProductCard';
 export * from './ShopCard';
-export * from './PageTemplate';

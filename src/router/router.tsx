@@ -1,15 +1,6 @@
-import { RootLayout } from '@/components';
-import { SPA_ROUTES } from '@/constants';
-import {
-  AboutPage,
-  CategoryPage,
-  ContactPage,
-  HomePage,
-  ProductPage,
-  ProgramPage,
-} from '@/pages';
 import { createBrowserRouter } from 'react-router-dom';
-import { ProgramiPage } from 'src/pages/ProgramiPage';
+import { RootLayout } from '../components';
+import { HomePage, CategoryPage, ProductPage, AboutPage } from '../pages';
 
 export const router = createBrowserRouter([
   {
@@ -21,21 +12,21 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: SPA_ROUTES.ABOUT_PAGE,
-        element: <AboutPage />,
-      },
-      {
-        path: `${SPA_ROUTES.PROGRAMS_PAGE}/:program`,
-        element: <ProgramPage />,
-      },
-      {
-        path: `${SPA_ROUTES.PROGRAMS_PAGE}/:program/:category`,
+        path: `/:category`,
         element: <CategoryPage />,
       },
       {
-        path: `${SPA_ROUTES.PROGRAMS_PAGE}/:program/:category/:product`,
+        path: `/:category/:product`,
         element: <ProductPage />,
       },
+      {
+        path: '/o-nama',
+        element: <AboutPage />,
+      },
+      // {
+      //   path: `/:program/:category/:product`,
+      //   element: <ProductPage />,
+      // },
     ],
   },
   {
