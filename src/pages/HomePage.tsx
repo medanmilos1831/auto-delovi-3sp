@@ -37,6 +37,7 @@ const HomePage = () => {
       <ScrollProvider>
         <ScrollProvider.Container>
           <>
+            dsds
             <div className="h-2/3 w-full relative mb-3">
               <ImageParallax
                 imageStyle={{
@@ -69,7 +70,6 @@ const HomePage = () => {
                 </div>
               </ImageParallax>
             </div>
-
             <div
               className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-5 px-7 lg:px-8`}
             >
