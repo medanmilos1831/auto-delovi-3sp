@@ -11,10 +11,6 @@ export default defineConfig({
     port: 4200,
     host: 'localhost',
   },
-  preview: {
-    port: 4300,
-    host: 'localhost',
-  },
   plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
   base: '/auto-delovi-3sp',
   // Uncomment this if you are using workers.
