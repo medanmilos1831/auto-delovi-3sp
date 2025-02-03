@@ -72,7 +72,6 @@ const App = () => {
         }
       >
         <ApiProvider value={new Axios()}>
-          sss
           <RouterProvider router={router} />
         </ApiProvider>
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
