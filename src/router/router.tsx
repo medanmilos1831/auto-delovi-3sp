@@ -36,6 +36,6 @@ export const router = createBrowserRouter(
     },
   ],
   {
-    basename: '/',
+    basename: '/auto-delovi-3sp',
   }
 );
