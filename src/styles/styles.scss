@@ -66,27 +66,3 @@
 }
 
 
-@font-face {
-  font-family: 'LTRemark-bold';
-  src: url('../assets/fonts/LTRemark-Bold.eot'), /* IE9 Compat Modes */
-       url('../assets/fonts/LTRemark-Bold.woff') format('woff'), /* Modern Browsers */
-       url('../assets/fonts/LTRemark-Bold.woff2') format('woff'), /* Modern Browsers */
-       url('../assets/fonts/LTRemark-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
-}
-
-@font-face {
-  font-family: 'LTRemark-regular';
-  src: url('../assets/fonts/LTRemark-Regular.eot'), /* IE9 Compat Modes */
-       url('../assets/fonts/LTRemark-Regular.woff') format('woff'), /* Modern Browsers */
-       url('../assets/fonts/LTRemark-Regular.woff2') format('woff'), /* Modern Browsers */
-       url('../assets/fonts/LTRemark-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-}
-
-
-.font-family-bold {
-  font-family: 'LTRemark-bold';
-}
-
-.font-family-regular {
-  font-family: 'LTRemark-regular';
-}
