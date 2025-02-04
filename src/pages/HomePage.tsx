@@ -36,7 +36,7 @@ const HomePage = () => {
     <div className="h-full w-full relative">
       <ScrollProvider>
         <ScrollProvider.Container>
-          medeni
+          medeni meda
           <>
             <div className="h-2/3 w-full relative mb-3">
               <ImageParallax
